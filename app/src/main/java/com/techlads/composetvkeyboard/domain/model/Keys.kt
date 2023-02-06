@@ -69,7 +69,7 @@ sealed class SpecialCharacters(
 }
 
 sealed class UtilityKey(
-    val icon: ImageVector,
+    open val icon: ImageVector,
     override val id: String,
     override val text: String,
     override val span: Int = 1
@@ -81,6 +81,18 @@ sealed class UtilityKey(
     object Right : UtilityKey(Icons.Outlined.ArrowRight, RIGHT_KEY, RIGHT_KEY, 1)
     object Space : UtilityKey(Icons.Outlined.SpaceBar, SPACE_KEY, SPACE_KEY, 3)
     object RightArrow : UtilityKey(Icons.Outlined.ArrowForward, RIGHT_ARROW_KEY, RIGHT_ARROW_KEY, 2)
+}
+
+sealed class NumericUtilityKey(
+    override val icon: ImageVector,
+    override val id: String,
+    override val text: String,
+    override val span: Int = 1
+) : UtilityKey(icon, id, text, span) {
+    object Backspace : NumericUtilityKey(Icons.Outlined.ArrowBack, BACK_SPACE_KEY, BACK_SPACE_KEY)
+    object Space : NumericUtilityKey(Icons.Outlined.SpaceBar, SPACE_KEY, SPACE_KEY)
+    object RightArrow :
+        NumericUtilityKey(Icons.Outlined.ArrowForward, RIGHT_ARROW_KEY, RIGHT_ARROW_KEY)
 }
 
 class Digit(
