@@ -5,9 +5,35 @@ import com.techlads.composetvkeyboard.domain.model.SpecialCharacters.*
 import com.techlads.composetvkeyboard.domain.model.UtilityKey.*
 
 class KeysDataSource {
-    val normalKeys: List<Key> by lazy { constructLowerKeys() }
+    val normalKeys: List<Key> by lazy { constructNormalKeys() }
+    val numericKeys: List<Key> by lazy { constructNumericKeys() }
 
-    private fun constructLowerKeys(): List<Key> {
+    private fun constructNumericKeys(): List<Key> {
+        val keys = mutableListOf<Key>()
+        // Row one
+        keys.add(Digit("1", "1"))
+        keys.add(Digit("2", "2"))
+        keys.add(Digit("3", "3"))
+        keys.add(Dash)
+        // Row two
+        keys.add(Digit("4", "4"))
+        keys.add(Digit("5", "5"))
+        keys.add(Digit("6", "6"))
+        keys.add(NumericUtilityKey.Space)
+        // Row three
+        keys.add(Digit("7", "7"))
+        keys.add(Digit("8", "8"))
+        keys.add(Digit("9", "9"))
+        keys.add(NumericUtilityKey.Backspace)
+        // Row four
+        keys.add(Dot)
+        keys.add(Digit("0", "0"))
+        keys.add(Comma)
+        keys.add(NumericUtilityKey.RightArrow)
+
+        return keys
+    }
+    private fun constructNormalKeys(): List<Key> {
         val keys = mutableListOf<Key>()
         // Row one
         keys.addAll(generateNumericKeys())
