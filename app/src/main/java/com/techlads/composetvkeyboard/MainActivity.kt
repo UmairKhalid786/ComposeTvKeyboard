@@ -1,6 +1,7 @@
 package com.techlads.composetvkeyboard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -13,17 +14,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.techlads.composetvkeyboard.keyboard.KeyboardView
+import com.techlads.composetvkeyboard.keyboard.NumericKeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("tt_tt", "pp")
         super.onCreate(savedInstanceState)
         setContent {
             App()
+            Log.e("tt", "pp")
         }
     }
 
@@ -37,31 +39,26 @@ class MainActivity : ComponentActivity() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
+                        .background(Color.Gray)
                 ) {
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
-                            .background(
-                                color = MaterialTheme.colorScheme.primary
-                            )
                             .weight(1F)
                             .fillMaxSize()
                     ) {
-                        Text("Try this keyboard 😄")
+                        Text("Signup")
                     }
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
-                            .background(color = MaterialTheme.colorScheme.primaryContainer)
                             .weight(1F)
                             .fillMaxSize()
                     ) {
-                        Column(modifier = Modifier.padding(24.dp)) {
-                            val username = remember { mutableStateOf(TextFieldValue(text = "")) }
-                            TvTextField(value = username, label = "Start typing 😇") { username.value = it }
-                            Spacer(modifier = Modifier.height(24.dp))
-                            KeyboardView(
-                                textFieldState = username,
-                                modifier = Modifier.shadow(8.dp)
-                            ) {}
+                        Column {
+                            val username = remember { mutableStateOf("") }
+                            TvTextField(value = username.value, label = "Username") {
+                                username.value = it
+                            }
+                            NumericKeyboardView(Modifier.width(200.dp))
                         }
                     }
                 }
