@@ -14,18 +14,33 @@ import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.domain.model.KeysDataSource
 
 @Composable
-fun KeyboardView() {
-    val numbers = remember { KeysDataSource().normalKeys }
+fun KeyboardView(modifier: Modifier = Modifier) {
+    val keys = remember { KeysDataSource().normalKeys }
     LazyVerticalGrid(
-        modifier = Modifier
+        modifier = modifier
             .background(MaterialTheme.colorScheme.surface)
             .padding(8.dp),
         columns = GridCells.Fixed(10)
     ) {
-        items(numbers.size, span = { index ->
-            GridItemSpan(numbers[index].span)
+        items(keys.size, span = { index ->
+            GridItemSpan(keys[index].span)
         }) { index ->
-            KeyboardButton(key = numbers[index]) {}
+            KeyboardButton(key = keys[index]) {}
+        }
+    }
+}
+
+@Composable
+fun NumericKeyboardView(modifier: Modifier = Modifier) {
+    val keys = remember { KeysDataSource().numericKeys }
+    LazyVerticalGrid(
+        modifier = modifier
+            .background(MaterialTheme.colorScheme.surface)
+            .padding(8.dp),
+        columns = GridCells.Fixed(4)
+    ) {
+        items(keys.size) { index ->
+            KeyboardButton(key =  keys[index]) {}
         }
     }
 }
