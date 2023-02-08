@@ -15,9 +15,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.techlads.composetvkeyboard.keyboard.KeyboardView
 import com.techlads.composetvkeyboard.keyboard.NumericKeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
+import com.techlads.composetvkeyboard.utilities.isArrowLeft
+import com.techlads.composetvkeyboard.utilities.isArrowRight
+import com.techlads.composetvkeyboard.utilities.isBackspace
+import com.techlads.composetvkeyboard.utilities.removeLastCharOrEmpty
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,11 +61,42 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                     ) {
                         Column {
-                            val username = remember { mutableStateOf("") }
-                            TvTextField(value = username.value, label = "Username") {
+                            val username = remember {
+                                mutableStateOf(
+                                    TextFieldValue(
+                                        text = ""
+                                    )
+                                )
+                            }
+                            TvTextField(value = username, label = "Hi") {
                                 username.value = it
                             }
-                            NumericKeyboardView(Modifier.width(200.dp))
+                            CustomTextField(textState = username)
+                            KeyboardView {
+                                if (it.isBackspace()) {
+                                    username.value = username.value.removeLastCharOrEmpty()
+                                } else if (it.isArrowLeft()) {
+                                    val value = username.value.text
+                                    username.value = TextFieldValue(
+                                        text = value,
+                                        selection = TextRange(username.value.selection.start - 1)
+                                    )
+                                }else if (it.isArrowRight()) {
+                                    val value = username.value.text
+                                    username.value = TextFieldValue(
+                                        text = value,
+                                        selection = TextRange(username.value.selection.start + 1)
+                                    )
+                                } else {
+                                    val value = username.value.text.plus(it.text)
+                                    username.value = TextFieldValue(
+                                        text = value
+                                    )
+                                }
+                            }
+                            NumericKeyboardView(Modifier.width(200.dp)) {
+
+                            }
                         }
                     }
                 }

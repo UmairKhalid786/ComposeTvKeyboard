@@ -4,6 +4,7 @@ import androidx.compose.foundation.focusable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -13,17 +14,18 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import com.techlads.composetvkeyboard.theme.LightBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TvTextField(
-    value: String,
+    value: MutableState<TextFieldValue>,
     label: String,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardType: KeyboardType = KeyboardType.Text,
-    onValueChange: (String) -> Unit
+    onValueChange: (TextFieldValue) -> Unit
 ) {
     val defaultColor = remember {
         Color.White.copy(0.6F)
@@ -34,6 +36,8 @@ fun TvTextField(
     val selectionColor = remember { mutableStateOf(defaultColor) }
 
     OutlinedTextField(
+        value.value,
+        maxLines = 1,
         textStyle = TextStyle(
             fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.Thin
@@ -43,10 +47,11 @@ fun TvTextField(
             unfocusedLabelColor = selectionColor.value
         ),
         label = { Text(text = label) },
-        value = value,
         visualTransformation = visualTransformation,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        onValueChange = onValueChange,
+        onValueChange = {
+            onValueChange(it)
+        },
         modifier = Modifier
             .onFocusChanged { state ->
                 selectionColor.value = if (state.isFocused) {
