@@ -16,9 +16,10 @@ import com.techlads.composetvkeyboard.domain.model.Digit
 import com.techlads.composetvkeyboard.domain.model.Key
 import com.techlads.composetvkeyboard.domain.model.UtilityKey
 import com.techlads.composetvkeyboard.theme.md_theme_dark_onPrimary
+import com.techlads.composetvkeyboard.utilities.handleCaseMode
 
 @Composable
-fun KeyboardButton(key: Key, onClick: () -> Unit) {
+fun KeyboardButton(key: Key, isUppercaseEnable: Boolean = false, onClick: (key: Key) -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
 
@@ -27,7 +28,7 @@ fun KeyboardButton(key: Key, onClick: () -> Unit) {
     Button(
         onClick = {
             focusRequester.requestFocus()
-            onClick()
+            onClick(key)
         },
         interactionSource = interactionSource,
         contentPadding = PaddingValues(0.dp),
@@ -50,7 +51,7 @@ fun KeyboardButton(key: Key, onClick: () -> Unit) {
                 )
             }
             else -> {
-                Text(text = key.text)
+                Text(text = key.handleCaseMode(isUppercaseEnable))
             }
         }
     }
@@ -59,5 +60,5 @@ fun KeyboardButton(key: Key, onClick: () -> Unit) {
 @Preview
 @Composable
 fun KeyboardButtonPreview() {
-    KeyboardButton(Digit("0", "0")) {}
+    KeyboardButton(Digit.Zero) {}
 }
