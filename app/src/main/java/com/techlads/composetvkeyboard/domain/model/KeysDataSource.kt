@@ -86,8 +86,7 @@ class KeysDataSource {
 
         // Row five
         add(Numeric)
-        add(Left)
-        add(Right)
+        add(Clear)
         add(Space)
         add(Dash)
         add(Underscore)

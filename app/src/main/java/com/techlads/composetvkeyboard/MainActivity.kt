@@ -21,8 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.keyboard.KeyboardView
 import com.techlads.composetvkeyboard.keyboard.NumericKeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
-import com.techlads.composetvkeyboard.utilities.isArrowLeft
-import com.techlads.composetvkeyboard.utilities.isArrowRight
+import com.techlads.composetvkeyboard.utilities.isClear
 import com.techlads.composetvkeyboard.utilities.isBackspace
 import com.techlads.composetvkeyboard.utilities.removeLastCharOrEmpty
 
@@ -72,27 +71,8 @@ class MainActivity : ComponentActivity() {
                                 username.value = it
                             }
                             CustomTextField(textState = username)
-                            KeyboardView {
-                                if (it.isBackspace()) {
-                                    username.value = username.value.removeLastCharOrEmpty()
-                                } else if (it.isArrowLeft()) {
-                                    val value = username.value.text
-                                    username.value = TextFieldValue(
-                                        text = value,
-                                        selection = TextRange(username.value.selection.start - 1)
-                                    )
-                                }else if (it.isArrowRight()) {
-                                    val value = username.value.text
-                                    username.value = TextFieldValue(
-                                        text = value,
-                                        selection = TextRange(username.value.selection.start + 1)
-                                    )
-                                } else {
-                                    val value = username.value.text.plus(it.text)
-                                    username.value = TextFieldValue(
-                                        text = value
-                                    )
-                                }
+                            KeyboardView(textFieldState = username) {
+
                             }
                             NumericKeyboardView(Modifier.width(200.dp)) {
 

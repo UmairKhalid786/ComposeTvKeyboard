@@ -6,7 +6,7 @@ sealed class Alphabets(
     override val code: Int,
     override val text: String,
     override val span: Int = 1
-) : Key {
+) : Key, Cloneable {
     object A : Alphabets(KEYCODE_A, "a")
     object B : Alphabets(KEYCODE_B, "b")
     object C : Alphabets(KEYCODE_C, "c")

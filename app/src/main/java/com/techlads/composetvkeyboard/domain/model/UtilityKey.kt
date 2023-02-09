@@ -29,16 +29,11 @@ sealed class UtilityKey(
         KeysConstants.NUMERIC_KEY
     )
 
-    object Left : UtilityKey(
-        Icons.Outlined.ArrowLeft,
-        KeyEvent.KEYCODE_DPAD_LEFT,
-        KeysConstants.LEFT_KEY
-    )
-
-    object Right : UtilityKey(
-        Icons.Outlined.ArrowRight,
-        KeyEvent.KEYCODE_DPAD_RIGHT,
-        KeysConstants.RIGHT_KEY
+    object Clear : UtilityKey(
+        Icons.Outlined.Clear,
+        KeyEvent.KEYCODE_CLEAR,
+        KeysConstants.CLEAR_KEY,
+        2
     )
 
     object Space : UtilityKey(
