@@ -1,7 +1,7 @@
 package com.techlads.composetvkeyboard.domain.model
 
-sealed interface Key {
-    val id: String
+interface Key {
+    val code: Int
     val text: String
     val span: Int
 }
