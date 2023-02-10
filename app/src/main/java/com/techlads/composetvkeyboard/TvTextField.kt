@@ -3,13 +3,11 @@ package com.techlads.composetvkeyboard
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalTextInputService
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -35,31 +33,35 @@ fun TvTextField(
     }
     val selectionColor = remember { mutableStateOf(defaultColor) }
 
-    OutlinedTextField(
-        value.value,
-        maxLines = 1,
-        textStyle = TextStyle(
-            fontFamily = FontFamily.SansSerif,
-            fontWeight = FontWeight.Thin
-        ),
-        colors = TextFieldDefaults.outlinedTextFieldColors(
-            unfocusedBorderColor = selectionColor.value,
-            unfocusedLabelColor = selectionColor.value
-        ),
-        label = { Text(text = label) },
-        visualTransformation = visualTransformation,
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        onValueChange = {
-            onValueChange(it)
-        },
-        modifier = Modifier
-            .onFocusChanged { state ->
-                selectionColor.value = if (state.isFocused) {
-                    selectedColor
-                } else {
-                    defaultColor
+    CompositionLocalProvider(
+        LocalTextInputService provides null
+    ) {
+        OutlinedTextField(
+            value.value,
+            maxLines = 1,
+            textStyle = TextStyle(
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.Thin
+            ),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                unfocusedBorderColor = selectionColor.value,
+                unfocusedLabelColor = selectionColor.value
+            ),
+            label = { Text(text = label) },
+            visualTransformation = visualTransformation,
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            onValueChange = {
+                onValueChange(it)
+            },
+            modifier = Modifier
+                .onFocusChanged { state ->
+                    selectionColor.value = if (state.isFocused) {
+                        selectedColor
+                    } else {
+                        defaultColor
+                    }
                 }
-            }
-            .focusable(true)
-    )
+                .focusable(true)
+        )
+    }
 }

@@ -15,9 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.keyboard.KeyboardView
-import com.techlads.composetvkeyboard.keyboard.NumericKeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
 
 class MainActivity : ComponentActivity() {
@@ -60,16 +58,10 @@ class MainActivity : ComponentActivity() {
                                     )
                                 )
                             }
-                            TvTextField(value = username, label = "Hi") {
+                            TvTextField(value = username, label = "Hello") {
                                 username.value = it
                             }
-                            CustomTextField(textState = username)
-                            KeyboardView(textFieldState = username) {
-
-                            }
-                            NumericKeyboardView(Modifier.width(200.dp)) {
-
-                            }
+                            KeyboardView(textFieldState = username) {}
                         }
                     }
                 }
