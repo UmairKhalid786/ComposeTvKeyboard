@@ -18,9 +18,10 @@ fun KeyboardView(modifier: Modifier = Modifier) {
     val keys = remember { KeysDataSource().normalKeys }
     LazyVerticalGrid(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(8.dp),
-        columns = GridCells.Fixed(10)
+            .background(
+                MaterialTheme.colorScheme.surface, MaterialTheme.shapes.medium
+            )
+            .padding(8.dp), columns = GridCells.Fixed(10)
     ) {
         items(keys.size, span = { index ->
             GridItemSpan(keys[index].span)
