@@ -1,97 +1,96 @@
 package com.techlads.composetvkeyboard.domain.model
 
-import com.techlads.composetvkeyboard.domain.model.Alphabets.*
-import com.techlads.composetvkeyboard.domain.model.SpecialCharacters.*
 import com.techlads.composetvkeyboard.domain.model.UtilityKey.*
+import com.techlads.composetvkeyboard.domain.model.SpecialCharacters.*
+import com.techlads.composetvkeyboard.domain.model.Digit.*
+import com.techlads.composetvkeyboard.domain.model.Alphabets.*
+import com.techlads.composetvkeyboard.domain.model.TextUtilityKey.*
 
 class KeysDataSource {
     val normalKeys: List<Key> by lazy { constructNormalKeys() }
     val numericKeys: List<Key> by lazy { constructNumericKeys() }
 
-    private fun constructNumericKeys(): List<Key> {
-        val keys = mutableListOf<Key>()
+    private fun constructNumericKeys() = mutableListOf<Key>().apply {
         // Row one
-        keys.add(Digit("1", "1"))
-        keys.add(Digit("2", "2"))
-        keys.add(Digit("3", "3"))
-        keys.add(Dash)
-        // Row two
-        keys.add(Digit("4", "4"))
-        keys.add(Digit("5", "5"))
-        keys.add(Digit("6", "6"))
-        keys.add(NumericUtilityKey.Space)
-        // Row three
-        keys.add(Digit("7", "7"))
-        keys.add(Digit("8", "8"))
-        keys.add(Digit("9", "9"))
-        keys.add(NumericUtilityKey.Backspace)
-        // Row four
-        keys.add(Dot)
-        keys.add(Digit("0", "0"))
-        keys.add(Comma)
-        keys.add(NumericUtilityKey.RightArrow)
+        add(One)
+        add(Two)
+        add(Three)
+        add(Dash)
 
-        return keys
+        // Row two
+        add(Four)
+        add(Five)
+        add(Six)
+        add(NumericUtilityKey.Space)
+
+        // Row three
+        add(Seven)
+        add(Eight)
+        add(Nine)
+        add(NumericUtilityKey.Backspace)
+
+        // Row four
+        add(Dot)
+        add(Zero)
+        add(Comma)
+        add(NumericUtilityKey.RightArrow)
     }
-    private fun constructNormalKeys(): List<Key> {
-        val keys = mutableListOf<Key>()
+
+    private fun constructNormalKeys() = mutableListOf<Key>().apply {
         // Row one
-        keys.addAll(generateNumericKeys())
+        add(One)
+        add(Two)
+        add(Three)
+        add(Four)
+        add(Five)
+        add(Six)
+        add(Seven)
+        add(Eight)
+        add(Nine)
+        add(Zero)
+
         // Row two
-        keys.add(Q)
-        keys.add(W)
-        keys.add(E)
-        keys.add(R)
-        keys.add(T)
-        keys.add(Y)
-        keys.add(U)
-        keys.add(I)
-        keys.add(O)
-        keys.add(P)
+        add(Q)
+        add(W)
+        add(E)
+        add(R)
+        add(T)
+        add(Y)
+        add(U)
+        add(I)
+        add(O)
+        add(P)
 
         // Row three
-        keys.add(A)
-        keys.add(S)
-        keys.add(D)
-        keys.add(F)
-        keys.add(G)
-        keys.add(H)
-        keys.add(J)
-        keys.add(K)
-        keys.add(L)
-        keys.add(Dot)
+        add(A)
+        add(S)
+        add(D)
+        add(F)
+        add(G)
+        add(H)
+        add(J)
+        add(K)
+        add(L)
+        add(Dot)
 
         // Row four
-        keys.add(Uppercase)
-        keys.add(Z)
-        keys.add(X)
-        keys.add(C)
-        keys.add(V)
-        keys.add(B)
-        keys.add(N)
-        keys.add(M)
-        keys.add(Comma)
-        keys.add(Backspace)
+        add(Uppercase)
+        add(Z)
+        add(X)
+        add(C)
+        add(V)
+        add(B)
+        add(N)
+        add(M)
+        add(Comma)
+        add(Backspace)
 
         // Row five
-        keys.add(Numeric)
-        keys.add(Left)
-        keys.add(Right)
-        keys.add(Space)
-        keys.add(Dash)
-        keys.add(Underscore)
-        keys.add(RightArrow)
-
-        return keys
-    }
-
-    private fun generateNumericKeys(): List<Key> {
-        val keys = mutableListOf<Key>()
-        repeat(9) {
-            val keyText = (1 + it).toString()
-            keys.add(Digit(keyText, keyText))
-        }
-        keys.add(Digit("0", "0"))
-        return keys
+        add(Numeric)
+        add(Clear)
+        add(Underscore)
+        add(Space)
+        add(Dash)
+        add(ActionArrow)
     }
 }
