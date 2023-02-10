@@ -13,8 +13,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.keyboard.KeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
 
@@ -36,32 +37,31 @@ class MainActivity : ComponentActivity() {
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(Color.Gray)
                 ) {
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
+                            .background(
+                                color = MaterialTheme.colorScheme.primary
+                            )
                             .weight(1F)
                             .fillMaxSize()
                     ) {
-                        Text("Signup")
+                        Text("Try this keyboard 😄")
                     }
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
+                            .background(color = MaterialTheme.colorScheme.primaryContainer)
                             .weight(1F)
                             .fillMaxSize()
                     ) {
-                        Column {
-                            val username = remember {
-                                mutableStateOf(
-                                    TextFieldValue(
-                                        text = ""
-                                    )
-                                )
-                            }
-                            TvTextField(value = username, label = "Hello") {
-                                username.value = it
-                            }
-                            KeyboardView(textFieldState = username) {}
+                        Column(modifier = Modifier.padding(24.dp)) {
+                            val username = remember { mutableStateOf(TextFieldValue(text = "")) }
+                            TvTextField(value = username, label = "Start typing 😇") { username.value = it }
+                            Spacer(modifier = Modifier.height(24.dp))
+                            KeyboardView(
+                                textFieldState = username,
+                                modifier = Modifier.shadow(8.dp)
+                            ) {}
                         }
                     }
                 }
