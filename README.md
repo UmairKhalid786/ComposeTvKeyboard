@@ -2,6 +2,9 @@
 
 Basic TV custom keyboard written in jetpack compose 
 
+![Screenshot_1676068496](https://user-images.githubusercontent.com/21205138/218213936-820707c2-eb09-4882-a12c-c86743bc50af.png)
+
+
 ## Basic Keyboard
 ![new_keyboard](https://user-images.githubusercontent.com/21205138/218205995-767174dd-7658-4bd9-8f23-aa1f6b4066b4.png)
 
