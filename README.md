@@ -3,7 +3,8 @@
 Basic TV custom keyboard written in jetpack compose 
 
 ## Basic Keyboard
-![keyboard](https://user-images.githubusercontent.com/21205138/218205723-04227fcb-7162-4e2a-853a-5045566c8d0a.png)
+![new_keyboard](https://user-images.githubusercontent.com/21205138/218205995-767174dd-7658-4bd9-8f23-aa1f6b4066b4.png)
+
 
 
 ## Numeric Keyboard 
