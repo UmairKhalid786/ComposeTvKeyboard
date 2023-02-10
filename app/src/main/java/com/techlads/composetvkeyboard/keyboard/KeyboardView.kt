@@ -1,6 +1,5 @@
 package com.techlads.composetvkeyboard.keyboard
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -28,9 +27,10 @@ fun KeyboardView(
 
     LazyVerticalGrid(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(8.dp),
-        columns = GridCells.Fixed(10)
+            .background(
+                MaterialTheme.colorScheme.surface, MaterialTheme.shapes.medium
+            )
+            .padding(8.dp), columns = GridCells.Fixed(10)
     ) {
         items(keys.value.size, span = { index ->
             GridItemSpan(keys.value[index].span)

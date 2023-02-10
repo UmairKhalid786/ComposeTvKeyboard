@@ -12,25 +12,19 @@ sealed class UtilityKey(
     override val span: Int = 1
 ) : Key {
     object Uppercase : UtilityKey(
-        Icons.Outlined.ArrowUpward,
+        Icons.Outlined.KeyboardCapslock,
         KeyEvent.KEYCODE_CAPS_LOCK,
         KeysConstants.UPPER_CASE_KEY
     )
 
     object Backspace : UtilityKey(
-        Icons.Outlined.ArrowBack,
+        Icons.Outlined.KeyboardBackspace,
         KeyEvent.KEYCODE_BACK,
         KeysConstants.BACK_SPACE_KEY
     )
 
-    object Numeric : UtilityKey(
-        Icons.Outlined.Numbers,
-        KeyEvent.KEYCODE_NUM,
-        KeysConstants.NUMERIC_KEY
-    )
-
     object Clear : UtilityKey(
-        Icons.Outlined.Clear,
+        Icons.Outlined.Delete,
         KeyEvent.KEYCODE_CLEAR,
         KeysConstants.CLEAR_KEY,
         2
@@ -42,9 +36,9 @@ sealed class UtilityKey(
         KeysConstants.SPACE_KEY, 3
     )
 
-    object RightArrow : UtilityKey(
-        Icons.Outlined.ArrowForward,
+    object ActionArrow : UtilityKey(
+        Icons.Outlined.Search,
         KeyEvent.KEYCODE_FORWARD,
-        KeysConstants.RIGHT_ARROW_KEY, 2
+        KeysConstants.SEARCH_KEY, 2
     )
 }
