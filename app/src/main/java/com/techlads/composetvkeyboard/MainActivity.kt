@@ -1,7 +1,6 @@
 package com.techlads.composetvkeyboard
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -15,23 +14,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.keyboard.KeyboardView
 import com.techlads.composetvkeyboard.keyboard.NumericKeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
-import com.techlads.composetvkeyboard.utilities.isClear
-import com.techlads.composetvkeyboard.utilities.isBackspace
-import com.techlads.composetvkeyboard.utilities.removeLastCharOrEmpty
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("tt_tt", "pp")
         super.onCreate(savedInstanceState)
         setContent {
             App()
-            Log.e("tt", "pp")
         }
     }
 

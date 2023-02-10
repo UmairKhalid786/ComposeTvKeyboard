@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.domain.model.Digit
 import com.techlads.composetvkeyboard.domain.model.Key
+import com.techlads.composetvkeyboard.domain.model.TextUtilityKey
 import com.techlads.composetvkeyboard.domain.model.UtilityKey
 import com.techlads.composetvkeyboard.theme.md_theme_dark_onPrimary
 import com.techlads.composetvkeyboard.utilities.handleCaseMode
@@ -43,6 +44,9 @@ fun KeyboardButton(key: Key, isUppercaseEnable: Boolean = false, onClick: (key: 
             .focusRequester(focusRequester)
     ) {
         when (key) {
+            is TextUtilityKey -> {
+                Text(text = key.text, style = MaterialTheme.typography.bodySmall)
+            }
             is UtilityKey -> {
                 Icon(
                     key.icon,
