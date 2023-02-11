@@ -5,6 +5,7 @@ import com.techlads.composetvkeyboard.domain.model.NumericUtilityKey
 import com.techlads.composetvkeyboard.domain.model.UtilityKey
 
 fun Key.isBackspace() = this is UtilityKey.Backspace || this is NumericUtilityKey.Backspace
+fun Key.isUppercase() = this is UtilityKey.Uppercase
 fun Key.isClear() = this is UtilityKey.Clear
 fun Key.handleCaseMode(isUppercaseEnabled: Boolean) =
     if (isUppercaseEnabled)
