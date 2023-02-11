@@ -1,5 +1,6 @@
 package com.techlads.composetvkeyboard.keyboard
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -22,7 +23,12 @@ fun KeyboardView(
     onKeyPress: (key: Key) -> Unit
 ) {
     val isUppercase = remember { mutableStateOf(true) }
-    val keys = remember { mutableStateOf(KeysDataSource().normalKeys) }
+    val isNumeric = remember { mutableStateOf(true) }
+    val alphabets = remember { mutableStateOf(KeysDataSource().normalKeys) }
+    val numericKeys = remember { mutableStateOf(KeysDataSource().numericKeys) }
+    val keys = remember {
+        mutableStateOf(if (isNumeric.value) numericKeys.value  else alphabets.value)
+    }
 
     LazyVerticalGrid(
         modifier = modifier
@@ -38,6 +44,10 @@ fun KeyboardView(
             KeyboardButton(key = keys.value[index], isUppercaseEnable = isUppercase.value) {
                 if (it.isUppercase()) {
                     isUppercase.toggle()
+                } else if (it.isNumeric() || it.isAbc()) {
+                    isNumeric.toggle()
+                    Log.e("ValVal", isNumeric.value.toString())
+                    keys.value = if (isNumeric.value) numericKeys.value else alphabets.value
                 } else {
                     onKeyPress(it)
                     processKeys(it, textFieldState, isUppercase.value)

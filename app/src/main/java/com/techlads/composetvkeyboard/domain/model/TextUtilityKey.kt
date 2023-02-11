@@ -17,4 +17,10 @@ sealed class TextUtilityKey(
         KeyEvent.KEYCODE_NUM,
         KeysConstants.NUMERIC_KEY
     )
+
+    object ABC : TextUtilityKey(
+        Icons.Outlined.Numbers,
+        KeyEvent.KEYCODE_TV_TELETEXT,
+        KeysConstants.ABC_KEY
+    )
 }

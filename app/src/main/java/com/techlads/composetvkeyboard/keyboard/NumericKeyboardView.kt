@@ -15,7 +15,7 @@ import com.techlads.composetvkeyboard.domain.model.KeysDataSource
 
 @Composable
 fun NumericKeyboardView(modifier: Modifier = Modifier, onKeyPress: (key: Key) -> Unit) {
-    val keys = remember { KeysDataSource().numericKeys }
+    val keys = remember { KeysDataSource().numericMiniKeys }
     LazyVerticalGrid(
         modifier = modifier
             .background(MaterialTheme.colorScheme.surface)
