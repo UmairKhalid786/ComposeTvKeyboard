@@ -1,6 +1,5 @@
 package com.techlads.composetvkeyboard.keyboard
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -14,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.domain.model.Key
 import com.techlads.composetvkeyboard.domain.model.KeysDataSource
-import com.techlads.composetvkeyboard.domain.model.UtilityKey
 import com.techlads.composetvkeyboard.utilities.*
 
 @Composable
@@ -28,15 +26,17 @@ fun KeyboardView(
 
     LazyVerticalGrid(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(8.dp),
-        columns = GridCells.Fixed(10)
+            .background(
+                MaterialTheme.colorScheme.surface,
+                MaterialTheme.shapes.medium
+            )
+            .padding(8.dp), columns = GridCells.Fixed(10)
     ) {
         items(keys.value.size, span = { index ->
             GridItemSpan(keys.value[index].span)
         }) { index ->
             KeyboardButton(key = keys.value[index], isUppercaseEnable = isUppercase.value) {
-                if (it is UtilityKey.Uppercase) {
+                if (it.isUppercase()) {
                     isUppercase.toggle()
                 } else {
                     onKeyPress(it)
@@ -47,13 +47,13 @@ fun KeyboardView(
     }
 }
 
-fun processKeys(it: Key, textFieldState: MutableState<TextFieldValue>?) {
+fun processKeys(it: Key, state: MutableState<TextFieldValue>?) {
     if (it.isBackspace()) {
-        textFieldState?.updateAndRemoveLastChar()
+        state?.updateAndRemoveLastChar()
     } else if (it.isClear()) {
-        textFieldState?.clear()
+        state?.clear()
     } else {
-        textFieldState?.append(it.text)
+        state?.append(it.text)
     }
 }
 
