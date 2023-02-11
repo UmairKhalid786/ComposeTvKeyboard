@@ -40,20 +40,20 @@ fun KeyboardView(
                     isUppercase.toggle()
                 } else {
                     onKeyPress(it)
-                    processKeys(it, textFieldState)
+                    processKeys(it, textFieldState, isUppercase.value)
                 }
             }
         }
     }
 }
 
-fun processKeys(it: Key, state: MutableState<TextFieldValue>?) {
+fun processKeys(it: Key, state: MutableState<TextFieldValue>?, isUppercase: Boolean) {
     if (it.isBackspace()) {
         state?.updateAndRemoveLastChar()
     } else if (it.isClear()) {
         state?.clear()
     } else {
-        state?.append(it.text)
+        state?.append(it.handleCaseMode(isUppercase))
     }
 }
 
