@@ -4,6 +4,7 @@ import com.techlads.composetvkeyboard.domain.model.UtilityKey.*
 import com.techlads.composetvkeyboard.domain.model.SpecialCharacters.*
 import com.techlads.composetvkeyboard.domain.model.Digit.*
 import com.techlads.composetvkeyboard.domain.model.Alphabets.*
+import com.techlads.composetvkeyboard.domain.model.TextUtilityKey.*
 
 class KeysDataSource {
     val normalKeys: List<Key> by lazy { constructNormalKeys() }
@@ -87,9 +88,9 @@ class KeysDataSource {
         // Row five
         add(Numeric)
         add(Clear)
+        add(Underscore)
         add(Space)
         add(Dash)
-        add(Underscore)
-        add(RightArrow)
+        add(ActionArrow)
     }
 }
