@@ -19,9 +19,11 @@ import com.techlads.composetvkeyboard.utilities.*
 fun KeyboardView(
     modifier: Modifier = Modifier,
     textFieldState: MutableState<TextFieldValue>?,
+    focusFirstKey: Boolean = false,
     onAction: ((key: Key) -> Unit)? = null,
     onKeyPress: (key: Key) -> Unit
 ) {
+    val focusKey = remember { mutableStateOf(focusFirstKey) }
     val isUppercase = remember { mutableStateOf(true) }
     val isNumeric = remember { mutableStateOf(false) }
     val isSpecialCharacters = remember { mutableStateOf(false) }
@@ -49,7 +51,11 @@ fun KeyboardView(
         items(keys.size, span = { index ->
             GridItemSpan(keys[index].span)
         }) { index ->
-            KeyboardButton(key = keys[index], isUppercaseEnable = isUppercase.value) {
+            KeyboardButton(
+                key = keys[index],
+                requestFocus = focusKey.value && index == 0,
+                isUppercaseEnable = isUppercase.value
+            ) {
                 if (it.isUppercase()) {
                     isUppercase.toggle()
                 } else if (it.isAction()) {
