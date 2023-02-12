@@ -5,6 +5,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalTextInputService
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -22,18 +23,24 @@ fun TvTextField(
     onValueChange: (TextFieldValue) -> Unit
 ) {
 
-    OutlinedTextField(
-        value.value,
-        maxLines = 1,
-        modifier = Modifier.focusable(false),
-        textStyle = TextStyle(
-            fontFamily = FontFamily.SansSerif,
-            fontWeight = FontWeight.Thin
-        ),
-        label = { Text(text = label) },
-        visualTransformation = visualTransformation,
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        onValueChange = {
-            onValueChange(it)
-        })
+    CompositionLocalProvider(
+        LocalTextInputService provides null
+    ) {
+        OutlinedTextField(
+            value.value,
+            maxLines = 1,
+            modifier = Modifier.focusable(false),
+            readOnly = true,
+            enabled = false,
+            textStyle = TextStyle(
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.Thin
+            ),
+            label = { Text(text = label) },
+            visualTransformation = visualTransformation,
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+            onValueChange = {
+                onValueChange(it)
+            })
+    }
 }
