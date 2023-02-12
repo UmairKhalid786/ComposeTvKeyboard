@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import com.techlads.composetvkeyboard.custom.TvTextField
 import com.techlads.composetvkeyboard.keyboard.KeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
 
@@ -57,12 +58,20 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Column(modifier = Modifier.padding(24.dp)) {
                             val username = remember { mutableStateOf(TextFieldValue(text = "")) }
-                            TvTextField(value = username, label = "Start typing 😇") { username.value = it }
+                            TvTextField(
+                                value = username,
+                                label = "Start typing 😇"
+                            ) { username.value = it }
                             Spacer(modifier = Modifier.height(24.dp))
                             KeyboardView(
                                 textFieldState = username,
-                                modifier = Modifier.shadow(8.dp)
-                            ) {}
+                                modifier = Modifier.shadow(8.dp),
+                                onAction = {
+
+                                }
+                            ) {
+
+                            }
                         }
                     }
                 }
