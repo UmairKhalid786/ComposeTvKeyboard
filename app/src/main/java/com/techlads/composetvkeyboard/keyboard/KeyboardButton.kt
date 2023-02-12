@@ -55,7 +55,10 @@ fun KeyboardButton(key: Key, isUppercaseEnable: Boolean = false, onClick: (key: 
                 )
             }
             else -> {
-                Text(text = key.handleCaseMode(isUppercaseEnable))
+                Text(
+                    text = key.handleCaseMode(isUppercaseEnable),
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
         }
     }
