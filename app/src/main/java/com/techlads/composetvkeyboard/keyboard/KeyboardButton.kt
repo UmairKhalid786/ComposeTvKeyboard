@@ -5,6 +5,7 @@ import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -20,15 +21,23 @@ import com.techlads.composetvkeyboard.theme.md_theme_dark_onPrimary
 import com.techlads.composetvkeyboard.utilities.handleCaseMode
 
 @Composable
-fun KeyboardButton(key: Key, isUppercaseEnable: Boolean = false, onClick: (key: Key) -> Unit) {
+fun KeyboardButton(
+    key: Key,
+    requestFocus: Boolean,
+    isUppercaseEnable: Boolean = false,
+    onClick: (key: Key) -> Unit
+) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
 
     val focusRequester = remember { FocusRequester() }
 
+    LaunchedEffect(key1 = Unit) {
+        focusRequester.requestFocus()
+    }
+
     Button(
         onClick = {
-            focusRequester.requestFocus()
             onClick(key)
         },
         interactionSource = interactionSource,
@@ -67,5 +76,5 @@ fun KeyboardButton(key: Key, isUppercaseEnable: Boolean = false, onClick: (key: 
 @Preview
 @Composable
 fun KeyboardButtonPreview() {
-    KeyboardButton(Digit.Zero) {}
+    KeyboardButton(Digit.Zero, false) {}
 }
