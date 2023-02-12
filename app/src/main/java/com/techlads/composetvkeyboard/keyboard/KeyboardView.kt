@@ -19,41 +19,63 @@ import com.techlads.composetvkeyboard.utilities.*
 fun KeyboardView(
     modifier: Modifier = Modifier,
     textFieldState: MutableState<TextFieldValue>?,
+    onAction: ((key: Key) -> Unit)? = null,
     onKeyPress: (key: Key) -> Unit
 ) {
     val isUppercase = remember { mutableStateOf(true) }
-    val keys = remember { mutableStateOf(KeysDataSource().normalKeys) }
+    val isNumeric = remember { mutableStateOf(false) }
+    val isSpecialCharacters = remember { mutableStateOf(false) }
+    val alphabets = remember { mutableStateOf(KeysDataSource().normalKeys) }
+    val numericKeys = remember { mutableStateOf(KeysDataSource().numericKeys) }
+    val specialCharactersKeys = remember { mutableStateOf(KeysDataSource().specialCharactersKeys) }
+
+    val keys by rememberUpdatedState(
+        if (isNumeric.value) {
+            numericKeys.value
+        } else if (isSpecialCharacters.value) {
+            specialCharactersKeys.value
+        } else {
+            alphabets.value
+        }
+    )
 
     LazyVerticalGrid(
         modifier = modifier
             .background(
-                MaterialTheme.colorScheme.surface,
-                MaterialTheme.shapes.medium
+                MaterialTheme.colorScheme.surface, MaterialTheme.shapes.medium
             )
             .padding(8.dp), columns = GridCells.Fixed(10)
     ) {
-        items(keys.value.size, span = { index ->
-            GridItemSpan(keys.value[index].span)
+        items(keys.size, span = { index ->
+            GridItemSpan(keys[index].span)
         }) { index ->
-            KeyboardButton(key = keys.value[index], isUppercaseEnable = isUppercase.value) {
+            KeyboardButton(key = keys[index], isUppercaseEnable = isUppercase.value) {
                 if (it.isUppercase()) {
                     isUppercase.toggle()
+                } else if (it.isAction()) {
+                    onAction?.invoke(it)
+                } else if (it.isSpecialCharacters()) {
+                    isSpecialCharacters.toggle()
+                    isNumeric.value = false
+                } else if (it.isNumeric() || it.isAbc()) {
+                    isNumeric.toggle()
+                    isSpecialCharacters.value = false
                 } else {
                     onKeyPress(it)
-                    processKeys(it, textFieldState)
+                    processKeys(it, textFieldState, isUppercase.value)
                 }
             }
         }
     }
 }
 
-fun processKeys(it: Key, state: MutableState<TextFieldValue>?) {
+fun processKeys(it: Key, state: MutableState<TextFieldValue>?, isUppercase: Boolean) {
     if (it.isBackspace()) {
         state?.updateAndRemoveLastChar()
     } else if (it.isClear()) {
         state?.clear()
     } else {
-        state?.append(it.text)
+        state?.append(it.handleCaseMode(isUppercase))
     }
 }
 

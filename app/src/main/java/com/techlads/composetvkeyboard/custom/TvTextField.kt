@@ -1,4 +1,4 @@
-package com.techlads.composetvkeyboard
+package com.techlads.composetvkeyboard.custom
 
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,6 +30,8 @@ fun TvTextField(
             value.value,
             maxLines = 1,
             modifier = Modifier.focusable(false),
+            readOnly = true,
+            enabled = false,
             textStyle = TextStyle(
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Thin
