@@ -18,6 +18,12 @@ sealed class TextUtilityKey(
         KeysConstants.NUMERIC_KEY
     )
 
+    object SpecialCharacters : TextUtilityKey(
+        Icons.Outlined.Numbers,
+        KeyEvent.KEYCODE_NUM,
+        KeysConstants.SPECIAL_CHARACTERS_KEY
+    )
+
     object ABC : TextUtilityKey(
         Icons.Outlined.Numbers,
         KeyEvent.KEYCODE_TV_TELETEXT,
