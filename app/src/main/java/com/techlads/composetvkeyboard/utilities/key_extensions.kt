@@ -10,6 +10,7 @@ fun Key.isUppercase() = this is UtilityKey.Uppercase
 fun Key.isNumeric() = this is TextUtilityKey.Numeric
 fun Key.isAbc() = this is TextUtilityKey.ABC
 fun Key.isClear() = this is UtilityKey.Clear
+fun Key.isSpecialCharacters() = this is TextUtilityKey.SpecialCharacters
 fun Key.handleCaseMode(isUppercaseEnabled: Boolean) =
     if (isUppercaseEnabled)
         text.uppercase()

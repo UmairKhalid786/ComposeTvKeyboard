@@ -10,6 +10,53 @@ class KeysDataSource {
     val normalKeys: List<Key> by lazy { constructNormalKeys() }
     val numericMiniKeys: List<Key> by lazy { constructNumericMiniKeys() }
     val numericKeys: List<Key> by lazy { constructNumericKeys() }
+    val specialCharactersKeys: List<Key> by lazy { constructSpecialCharactersKeys() }
+
+    private fun constructSpecialCharactersKeys() = mutableListOf<Key>().apply {
+        // Row one
+        add(Tide)
+        add(Grave)
+        add(Pipe)
+        add(Bullet)
+        add(Root)
+        add(PI)
+        add(Division)
+        add(Multiple)
+        add(Paragraph)
+        add(Triangle)
+
+        // Row two
+        add(Pound)
+        add(Cent)
+        add(Euro)
+        add(Yen)
+        add(Caret)
+        add(Degree)
+        add(Equal)
+        add(CurlyBracketLeft)
+        add(CurlyBracketRight)
+        add(Backlash)
+
+        // Row three
+        add(Numeric)
+        add(Percent)
+        add(CopyRight)
+        add(RegisterTrademark)
+        add(CheckMark)
+        add(BoxBracketLeft)
+        add(BoxBracketRight)
+        add(ArrowLeft)
+        add(ArrowRight)
+        add(NumericUtilityKey.Backspace)
+
+        // Row five
+        add(ABC)
+        add(Clear)
+        add(Dot)
+        add(Space)
+        add(Comma)
+        add(ActionArrow)
+    }
 
     private fun constructNumericKeys() = mutableListOf<Key>().apply {
         // Row one
@@ -37,7 +84,7 @@ class KeysDataSource {
         add(BackSlash)
 
         // Row three
-        add(MoreOperators)
+        add(SpecialCharacters)
         add(Asterisk)
         add(Quotes)
         add(SingleQuotes)

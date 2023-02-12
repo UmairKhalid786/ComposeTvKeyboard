@@ -1,6 +1,5 @@
 package com.techlads.composetvkeyboard.keyboard
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -23,18 +22,32 @@ fun KeyboardView(
     onKeyPress: (key: Key) -> Unit
 ) {
     val isUppercase = remember { mutableStateOf(true) }
-    val isNumeric = remember { mutableStateOf(true) }
+    val isNumeric = remember { mutableStateOf(false) }
+    val isSpecialCharacters = remember { mutableStateOf(false) }
     val alphabets = remember { mutableStateOf(KeysDataSource().normalKeys) }
     val numericKeys = remember { mutableStateOf(KeysDataSource().numericKeys) }
+    val specialCharactersKeys = remember { mutableStateOf(KeysDataSource().specialCharactersKeys) }
+
     val keys = remember {
-        mutableStateOf(if (isNumeric.value) numericKeys.value  else alphabets.value)
+        mutableStateOf(
+            when {
+                isNumeric.value -> {
+                    numericKeys.value
+                }
+                isSpecialCharacters.value -> {
+                    specialCharactersKeys.value
+                }
+                else -> {
+                    alphabets.value
+                }
+            }
+        )
     }
 
     LazyVerticalGrid(
         modifier = modifier
             .background(
-                MaterialTheme.colorScheme.surface,
-                MaterialTheme.shapes.medium
+                MaterialTheme.colorScheme.surface, MaterialTheme.shapes.medium
             )
             .padding(8.dp), columns = GridCells.Fixed(10)
     ) {
@@ -44,10 +57,26 @@ fun KeyboardView(
             KeyboardButton(key = keys.value[index], isUppercaseEnable = isUppercase.value) {
                 if (it.isUppercase()) {
                     isUppercase.toggle()
+                } else if (it.isSpecialCharacters()) {
+                    isSpecialCharacters.toggle()
+                    isNumeric.value = false
+                    keys.value = if (isNumeric.value) {
+                        numericKeys.value
+                    } else if (isSpecialCharacters.value) {
+                        specialCharactersKeys.value
+                    } else {
+                        alphabets.value
+                    }
                 } else if (it.isNumeric() || it.isAbc()) {
                     isNumeric.toggle()
-                    Log.e("ValVal", isNumeric.value.toString())
-                    keys.value = if (isNumeric.value) numericKeys.value else alphabets.value
+                    isSpecialCharacters.value = false
+                    keys.value = if (isNumeric.value) {
+                        numericKeys.value
+                    } else if (isSpecialCharacters.value) {
+                        specialCharactersKeys.value
+                    } else {
+                        alphabets.value
+                    }
                 } else {
                     onKeyPress(it)
                     processKeys(it, textFieldState, isUppercase.value)

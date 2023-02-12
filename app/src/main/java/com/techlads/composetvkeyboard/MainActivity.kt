@@ -20,6 +20,7 @@ import com.techlads.composetvkeyboard.keyboard.KeyboardView
 import com.techlads.composetvkeyboard.theme.Material3Theme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
