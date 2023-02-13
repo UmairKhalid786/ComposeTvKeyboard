@@ -23,7 +23,7 @@ fun NumericKeyboardView(modifier: Modifier = Modifier, onKeyPress: (key: Key) ->
         columns = GridCells.Fixed(4)
     ) {
         items(keys.size) { index ->
-            KeyboardButton(key = keys[index]) {
+            KeyboardButton(key = keys[index], false) {
                 onKeyPress(it)
             }
         }

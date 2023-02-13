@@ -62,6 +62,7 @@ class MainActivity : ComponentActivity() {
                             Spacer(modifier = Modifier.height(24.dp))
                             KeyboardView(
                                 textFieldState = username,
+                                focusFirstKey = true,
                                 modifier = Modifier.shadow(8.dp),
                                 onAction = {
 
