@@ -11,8 +11,8 @@ android {
         namespace = "com.techlads.composetvkeyboard"
         minSdk = libs.versions.minSdkTv.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.0.3"
     }
 
     buildTypes {
