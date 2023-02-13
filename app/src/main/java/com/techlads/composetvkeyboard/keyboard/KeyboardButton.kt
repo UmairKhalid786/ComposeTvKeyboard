@@ -1,13 +1,11 @@
 package com.techlads.composetvkeyboard.keyboard
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -19,6 +17,8 @@ import com.techlads.composetvkeyboard.domain.model.TextUtilityKey
 import com.techlads.composetvkeyboard.domain.model.UtilityKey
 import com.techlads.composetvkeyboard.theme.md_theme_dark_onPrimary
 import com.techlads.composetvkeyboard.utilities.handleCaseMode
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun KeyboardButton(
@@ -29,28 +29,29 @@ fun KeyboardButton(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
-
-    val focusRequester = remember { FocusRequester() }
-
-    LaunchedEffect(key1 = Unit) {
-        focusRequester.requestFocus()
+    val coroutineScope = rememberCoroutineScope()
+    val focusRequester = remember {
+        FocusRequester()
     }
 
     Button(
         onClick = {
             onClick(key)
+            coroutineScope.launch {
+                focusRequester.requestFocus()
+            }
         },
-        interactionSource = interactionSource,
         contentPadding = PaddingValues(0.dp),
         shape = MaterialTheme.shapes.extraSmall,
         colors = ButtonDefaults.buttonColors(
             containerColor = if (isFocused) md_theme_dark_onPrimary else MaterialTheme.colorScheme.primaryContainer,
-            contentColor = if (isFocused) MaterialTheme.colorScheme.primaryContainer else md_theme_dark_onPrimary
+            contentColor = if (isFocused)  MaterialTheme.colorScheme.primaryContainer else md_theme_dark_onPrimary
         ),
         modifier = Modifier
             .aspectRatio((key.span.toFloat() / 1F))
             .padding(4.dp)
             .focusRequester(focusRequester)
+            .focusable(interactionSource = interactionSource)
     ) {
         when (key) {
             is TextUtilityKey -> {
@@ -69,6 +70,13 @@ fun KeyboardButton(
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+        }
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        if (requestFocus) {
+            delay(1000)
+            focusRequester.requestFocus()
         }
     }
 }
