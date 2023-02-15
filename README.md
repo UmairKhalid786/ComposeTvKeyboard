@@ -19,11 +19,10 @@ Basic TV custom keyboard written in jetpack compose
 ![Screenshot_1676328680](https://user-images.githubusercontent.com/21205138/218593010-7db79c4b-7206-4849-a504-ed9480c5e1df.png)
 
 
-
 ## Upcoming features
 
--- Compact version 🔜
--- Only Numeric 🔜
--- Only Alphabets 🔜
--- IME actions support 🔜
--- External keyboard mapping 🔜
+- Compact version 🔜
+- Only Numeric 🔜
+- Only Alphabets 🔜
+- IME actions support 🔜
+- External keyboard mapping 🔜
