@@ -2,4 +2,18 @@
 
 Basic TV custom keyboard written in jetpack compose 
 
-![Screenshot_1676068496](https://user-images.githubusercontent.com/21205138/218213936-820707c2-eb09-4882-a12c-c86743bc50af.png)
+Uppercase
+![Screenshot_1676328669](https://user-images.githubusercontent.com/21205138/218592831-bca4d390-5e48-44b0-9a35-87d16e11b74b.png)
+
+Lowercase
+![Screenshot_1676328675](https://user-images.githubusercontent.com/21205138/218592897-f046a88b-dbad-401f-89aa-1ec6299c2770.png)
+
+Digits
+![Screenshot_1676328678](https://user-images.githubusercontent.com/21205138/218592952-3beb940c-5646-4dbd-9a68-533d68861ebc.png)
+
+Special Characters
+![Screenshot_1676328680](https://user-images.githubusercontent.com/21205138/218593010-7db79c4b-7206-4849-a504-ed9480c5e1df.png)
+
+
+
+
