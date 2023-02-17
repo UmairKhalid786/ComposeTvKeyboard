@@ -17,7 +17,6 @@ import com.techlads.composetvkeyboard.domain.model.TextUtilityKey
 import com.techlads.composetvkeyboard.domain.model.UtilityKey
 import com.techlads.composetvkeyboard.theme.md_theme_dark_onPrimary
 import com.techlads.composetvkeyboard.utilities.handleCaseMode
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
@@ -53,32 +52,28 @@ fun KeyboardButton(
             .focusRequester(focusRequester)
             .focusable(interactionSource = interactionSource)
     ) {
-       Column {
-           Text(text = "")
-           when (key) {
-               is TextUtilityKey -> {
-                   Text(text = key.text, style = MaterialTheme.typography.bodySmall)
-               }
-               is UtilityKey -> {
-                   Icon(
-                       key.icon,
-                       contentDescription = key.text,
-                       modifier = Modifier.size(16.dp)
-                   )
-               }
-               else -> {
-                   Text(
-                       text = key.handleCaseMode(isUppercaseEnable),
-                       style = MaterialTheme.typography.bodyMedium
-                   )
-               }
-           }
-       }
+        when (key) {
+            is TextUtilityKey -> {
+                Text(text = key.text, style = MaterialTheme.typography.bodySmall)
+            }
+            is UtilityKey -> {
+                Icon(
+                    key.icon,
+                    contentDescription = key.text,
+                    modifier = Modifier.size(16.dp)
+                )
+            }
+            else -> {
+                Text(
+                    text = key.handleCaseMode(isUppercaseEnable),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
     }
 
     LaunchedEffect(key1 = Unit) {
         if (requestFocus) {
-            delay(1000)
             focusRequester.requestFocus()
         }
     }
