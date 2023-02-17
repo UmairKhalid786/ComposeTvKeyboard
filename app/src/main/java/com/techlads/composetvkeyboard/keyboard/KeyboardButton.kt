@@ -53,24 +53,27 @@ fun KeyboardButton(
             .focusRequester(focusRequester)
             .focusable(interactionSource = interactionSource)
     ) {
-        when (key) {
-            is TextUtilityKey -> {
-                Text(text = key.text, style = MaterialTheme.typography.bodySmall)
-            }
-            is UtilityKey -> {
-                Icon(
-                    key.icon,
-                    contentDescription = key.text,
-                    modifier = Modifier.size(16.dp)
-                )
-            }
-            else -> {
-                Text(
-                    text = key.handleCaseMode(isUppercaseEnable),
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
-        }
+       Column {
+           Text(text = "")
+           when (key) {
+               is TextUtilityKey -> {
+                   Text(text = key.text, style = MaterialTheme.typography.bodySmall)
+               }
+               is UtilityKey -> {
+                   Icon(
+                       key.icon,
+                       contentDescription = key.text,
+                       modifier = Modifier.size(16.dp)
+                   )
+               }
+               else -> {
+                   Text(
+                       text = key.handleCaseMode(isUppercaseEnable),
+                       style = MaterialTheme.typography.bodyMedium
+                   )
+               }
+           }
+       }
     }
 
     LaunchedEffect(key1 = Unit) {
