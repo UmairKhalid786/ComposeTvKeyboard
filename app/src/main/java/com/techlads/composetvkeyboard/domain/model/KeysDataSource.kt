@@ -6,11 +6,16 @@ import com.techlads.composetvkeyboard.domain.model.Digit.*
 import com.techlads.composetvkeyboard.domain.model.Alphabets.*
 import com.techlads.composetvkeyboard.domain.model.TextUtilityKey.*
 
-class KeysDataSource {
+object KeysDataSource {
     val normalKeys: List<Key> by lazy { constructNormalKeys() }
     val numericMiniKeys: List<Key> by lazy { constructNumericMiniKeys() }
     val numericKeys: List<Key> by lazy { constructNumericKeys() }
     val specialCharactersKeys: List<Key> by lazy { constructSpecialCharactersKeys() }
+    val toggleKeys: List<Key> by lazy { createToggleButtonsList() }
+
+    private fun createToggleButtonsList() = mutableListOf<Key>().apply {
+        add(Uppercase)
+    }
 
     private fun constructSpecialCharactersKeys() = mutableListOf<Key>().apply {
         // Row one

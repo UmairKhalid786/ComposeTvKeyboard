@@ -17,6 +17,7 @@ import com.techlads.composetvkeyboard.domain.model.TextUtilityKey
 import com.techlads.composetvkeyboard.domain.model.UtilityKey
 import com.techlads.composetvkeyboard.theme.md_theme_dark_onPrimary
 import com.techlads.composetvkeyboard.utilities.handleCaseMode
+import com.techlads.composetvkeyboard.utilities.toggle
 import kotlinx.coroutines.launch
 
 @Composable
@@ -24,17 +25,20 @@ fun KeyboardButton(
     key: Key,
     requestFocus: Boolean,
     isUppercaseEnable: Boolean = false,
+    isToggle: Boolean = false,
     onClick: (key: Key) -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
+    val isToggleEnable = remember { mutableStateOf(isToggle) }
     val coroutineScope = rememberCoroutineScope()
-    val focusRequester = remember {
-        FocusRequester()
-    }
+    val focusRequester = remember { FocusRequester() }
 
     Button(
         onClick = {
+            if (isToggle) {
+                isToggleEnable.toggle()
+            }
             onClick(key)
             coroutineScope.launch {
                 focusRequester.requestFocus()
@@ -43,8 +47,8 @@ fun KeyboardButton(
         contentPadding = PaddingValues(0.dp),
         shape = MaterialTheme.shapes.extraSmall,
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (isFocused) md_theme_dark_onPrimary else MaterialTheme.colorScheme.primaryContainer,
-            contentColor = if (isFocused)  MaterialTheme.colorScheme.primaryContainer else md_theme_dark_onPrimary
+            containerColor = if (isFocused || isToggleEnable.value) md_theme_dark_onPrimary else MaterialTheme.colorScheme.primaryContainer,
+            contentColor = if (isFocused || isToggleEnable.value) MaterialTheme.colorScheme.primaryContainer else md_theme_dark_onPrimary
         ),
         modifier = Modifier
             .aspectRatio((key.span.toFloat() / 1F))
