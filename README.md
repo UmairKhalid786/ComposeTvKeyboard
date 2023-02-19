@@ -10,12 +10,13 @@ Basic TV custom keyboard written in jetpack compose
 - Only Alphabets 🔜
 - IME actions support 🔜
 - External keyboard mapping 🔜
+- Keys animation 🔜
 
 ## Supported features
-- Android TV OS inspired keyboard 
-- One keyboard contains support for Numeric, Alphabets and Special Characters
-- Uppercase/Lowercase alphabets support added
-- Search IME action support added 
+- Android TV OS inspired keyboard ✅
+- One keyboard contains support for Numeric, Alphabets and Special Characters ✅
+- Uppercase/Lowercase alphabets support added ✅
+- Search IME action support added ✅
 
 ## Uppercase
 
