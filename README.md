@@ -2,21 +2,6 @@
 
 Basic TV custom keyboard written in jetpack compose 
 
-
-## Upcoming features
-
-- Compact version 🔜
-- Only Numeric 🔜
-- Only Alphabets 🔜
-- IME actions support 🔜
-- External keyboard mapping 🔜
-
-## Supported features
-- Android TV OS inspired keyboard 
-- One keyboard contains support for Numeric, Alphabets and Special Characters
-- Uppercase/Lowercase alphabets support added
-- Search IME action support added 
-
 ## Uppercase
 
 ![Screenshot_1676328669](https://user-images.githubusercontent.com/21205138/218592831-bca4d390-5e48-44b0-9a35-87d16e11b74b.png)
@@ -32,4 +17,3 @@ Basic TV custom keyboard written in jetpack compose
 ## Special Characters
 
 ![Screenshot_1676328680](https://user-images.githubusercontent.com/21205138/218593010-7db79c4b-7206-4849-a504-ed9480c5e1df.png)
-
