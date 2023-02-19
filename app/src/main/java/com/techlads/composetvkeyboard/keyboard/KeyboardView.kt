@@ -48,7 +48,11 @@ fun KeyboardView(
             )
             .padding(8.dp), columns = GridCells.Fixed(10)
     ) {
-        items(keys.size, span = { index ->
+        items(keys.size,
+            key = { index ->
+                keys[index].text
+            },
+            span = { index ->
             GridItemSpan(keys[index].span)
         }) { index ->
             KeyboardButton(

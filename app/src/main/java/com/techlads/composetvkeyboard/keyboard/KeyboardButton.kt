@@ -1,5 +1,6 @@
 package com.techlads.composetvkeyboard.keyboard
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -7,10 +8,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import com.techlads.composetvkeyboard.domain.model.Digit
 import com.techlads.composetvkeyboard.domain.model.Key
 import com.techlads.composetvkeyboard.domain.model.TextUtilityKey
@@ -31,8 +34,16 @@ fun KeyboardButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
     val isToggleEnable = remember { mutableStateOf(isToggle) }
+    val selected = remember { mutableStateOf(isFocused) }
     val coroutineScope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
+    val scale = animateFloatAsState(
+        targetValue = if (selected.value || isFocused) 1.2f else 1f,
+        animationSpec = tween(
+            durationMillis = 10,
+            easing = LinearEasing
+        )
+    )
 
     Button(
         onClick = {
@@ -50,9 +61,16 @@ fun KeyboardButton(
             containerColor = if (isFocused || isToggleEnable.value) md_theme_dark_onPrimary else MaterialTheme.colorScheme.primaryContainer,
             contentColor = if (isFocused || isToggleEnable.value) MaterialTheme.colorScheme.primaryContainer else md_theme_dark_onPrimary
         ),
+        elevation = ButtonDefaults.buttonElevation(
+            pressedElevation = 0.dp,
+            defaultElevation = 10.dp,
+            focusedElevation = 30.dp
+        ),
         modifier = Modifier
+            .scale(scale.value)
             .aspectRatio((key.span.toFloat() / 1F))
             .padding(4.dp)
+            .zIndex(if (isFocused) 10f else 1f)
             .focusRequester(focusRequester)
             .focusable(interactionSource = interactionSource)
     ) {
