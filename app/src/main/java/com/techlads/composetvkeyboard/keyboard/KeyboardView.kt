@@ -27,9 +27,9 @@ fun KeyboardView(
     val isUppercase = remember { mutableStateOf(true) }
     val isNumeric = remember { mutableStateOf(false) }
     val isSpecialCharacters = remember { mutableStateOf(false) }
-    val alphabets = remember { mutableStateOf(KeysDataSource().normalKeys) }
-    val numericKeys = remember { mutableStateOf(KeysDataSource().numericKeys) }
-    val specialCharactersKeys = remember { mutableStateOf(KeysDataSource().specialCharactersKeys) }
+    val alphabets = remember { mutableStateOf(KeysDataSource.normalKeys) }
+    val numericKeys = remember { mutableStateOf(KeysDataSource.numericKeys) }
+    val specialCharactersKeys = remember { mutableStateOf(KeysDataSource.specialCharactersKeys) }
 
     val keys by rememberUpdatedState(
         if (isNumeric.value) {
@@ -54,7 +54,8 @@ fun KeyboardView(
             KeyboardButton(
                 key = keys[index],
                 requestFocus = focusKey.value && index == 0,
-                isUppercaseEnable = isUppercase.value
+                isUppercaseEnable = isUppercase.value,
+                isToggle = keys[index].isToggleKey(),
             ) {
                 if (it.isUppercase()) {
                     isUppercase.toggle()
