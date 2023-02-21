@@ -25,10 +25,12 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun KeyboardButton(
+    modifier: Modifier = Modifier,
     key: Key,
     requestFocus: Boolean,
     isUppercaseEnable: Boolean = false,
     isToggle: Boolean = false,
+    wrapContent: Boolean = false,
     onClick: (key: Key) -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -37,6 +39,12 @@ fun KeyboardButton(
     val selected = remember { mutableStateOf(isFocused) }
     val coroutineScope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
+    val conditionalModifier = remember {
+        if (wrapContent)
+            modifier
+        else
+            modifier.aspectRatio((key.span.toFloat() / 1F))
+    }
     val scale = animateFloatAsState(
         targetValue = if (selected.value || isFocused) 1.2f else 1f,
         animationSpec = tween(
@@ -66,9 +74,8 @@ fun KeyboardButton(
             defaultElevation = 10.dp,
             focusedElevation = 30.dp
         ),
-        modifier = Modifier
+        modifier = conditionalModifier
             .scale(scale.value)
-            .aspectRatio((key.span.toFloat() / 1F))
             .padding(4.dp)
             .zIndex(if (isFocused) 10f else 1f)
             .focusRequester(focusRequester)
@@ -104,5 +111,5 @@ fun KeyboardButton(
 @Preview
 @Composable
 fun KeyboardButtonPreview() {
-    KeyboardButton(Digit.Zero, false) {}
+    KeyboardButton(key = Digit.Zero, requestFocus = false) {}
 }
