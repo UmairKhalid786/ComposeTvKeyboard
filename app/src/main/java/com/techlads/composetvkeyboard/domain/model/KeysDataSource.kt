@@ -1,5 +1,7 @@
 package com.techlads.composetvkeyboard.domain.model
 
+import android.view.KeyEvent
+import com.techlads.composetvkeyboard.data.SuggestionHandler
 import com.techlads.composetvkeyboard.domain.model.UtilityKey.*
 import com.techlads.composetvkeyboard.domain.model.SpecialCharacters.*
 import com.techlads.composetvkeyboard.domain.model.Digit.*
@@ -12,6 +14,11 @@ object KeysDataSource {
     val numericKeys: List<Key> by lazy { constructNumericKeys() }
     val specialCharactersKeys: List<Key> by lazy { constructSpecialCharactersKeys() }
     val toggleKeys: List<Key> by lazy { createToggleButtonsList() }
+    val emailSuggestions: List<Key> by lazy { createEmailSuggestions() }
+
+    private fun createEmailSuggestions(): List<Key> = SuggestionHandler.emails.map {
+        Suggestion(KeyEvent.KEYCODE_UNKNOWN, it, 3)
+    }
 
     private fun createToggleButtonsList() = mutableListOf<Key>().apply {
         add(Uppercase)
