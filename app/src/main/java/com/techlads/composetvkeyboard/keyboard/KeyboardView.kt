@@ -2,20 +2,17 @@ package com.techlads.composetvkeyboard.keyboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.domain.model.Key
-import com.techlads.composetvkeyboard.domain.model.KeysDataSource
+import com.techlads.composetvkeyboard.data.KeysDataSource
 import com.techlads.composetvkeyboard.utilities.*
 
 @Composable
@@ -23,6 +20,7 @@ fun KeyboardView(
     modifier: Modifier = Modifier,
     textFieldState: MutableState<TextFieldValue>?,
     focusFirstKey: Boolean = false,
+    enableEmailSuggestions: Boolean = false,
     onAction: ((key: Key) -> Unit)? = null,
     onKeyPress: (key: Key) -> Unit
 ) {
@@ -50,27 +48,8 @@ fun KeyboardView(
             )
             .padding(8.dp)
     ) {
-        LazyRow(
-            modifier = Modifier.wrapContentSize(),
-        ) {
-            items(KeysDataSource.emailSuggestions) {
-                KeyboardButton(
-                    modifier = Modifier
-                        .wrapContentSize(unbounded = true, align = Alignment.TopStart)
-                        .height(40.dp),
-                    key = it,
-                    requestFocus = false,
-                    isUppercaseEnable = false,
-                    isToggle = false,
-                    wrapContent = true,
-                    scaleAnimationEnabled = false,
-                    contentPadding = PaddingValues(4.dp)
-                ) {
-                    onKeyPress(it)
-                    processKeys(it, textFieldState, false)
-                }
-            }
-        }
+        if (enableEmailSuggestions)
+            EmailSuggestionsRow(textFieldState) {}
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(10)

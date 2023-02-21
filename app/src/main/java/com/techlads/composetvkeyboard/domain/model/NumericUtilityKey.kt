@@ -6,6 +6,7 @@ import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material.icons.outlined.SpaceBar
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.techlads.composetvkeyboard.data.KeysConstants
 
 sealed class NumericUtilityKey(
     override val icon: ImageVector,
@@ -29,7 +30,7 @@ sealed class NumericUtilityKey(
     object RightArrow :
         NumericUtilityKey(
             Icons.Outlined.ArrowForward,
-            KEYCODE_NAVIGATE_NEXT,
+            KEYCODE_UNKNOWN,
             KeysConstants.RIGHT_ARROW_KEY
         )
 }
