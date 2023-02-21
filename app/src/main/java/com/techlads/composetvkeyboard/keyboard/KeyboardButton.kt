@@ -31,6 +31,8 @@ fun KeyboardButton(
     isUppercaseEnable: Boolean = false,
     isToggle: Boolean = false,
     wrapContent: Boolean = false,
+    scaleAnimationEnabled: Boolean = true,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
     onClick: (key: Key) -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -46,7 +48,7 @@ fun KeyboardButton(
             modifier.aspectRatio((key.span.toFloat() / 1F))
     }
     val scale = animateFloatAsState(
-        targetValue = if (selected.value || isFocused) 1.2f else 1f,
+        targetValue = if ((selected.value || isFocused) && scaleAnimationEnabled) 1.2f else 1f,
         animationSpec = tween(
             durationMillis = 10,
             easing = LinearEasing
@@ -63,7 +65,7 @@ fun KeyboardButton(
                 focusRequester.requestFocus()
             }
         },
-        contentPadding = PaddingValues(0.dp),
+        contentPadding = contentPadding,
         shape = MaterialTheme.shapes.extraSmall,
         colors = ButtonDefaults.buttonColors(
             containerColor = if (isFocused || isToggleEnable.value) md_theme_dark_onPrimary else MaterialTheme.colorScheme.primaryContainer,
@@ -76,10 +78,10 @@ fun KeyboardButton(
         ),
         modifier = conditionalModifier
             .scale(scale.value)
-            .padding(4.dp)
             .zIndex(if (isFocused) 10f else 1f)
             .focusRequester(focusRequester)
             .focusable(interactionSource = interactionSource)
+            .padding(4.dp)
     ) {
         when (key) {
             is TextUtilityKey -> {

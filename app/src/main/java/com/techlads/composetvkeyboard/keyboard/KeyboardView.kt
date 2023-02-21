@@ -2,11 +2,14 @@ package com.techlads.composetvkeyboard.keyboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,27 +50,24 @@ fun KeyboardView(
             )
             .padding(8.dp)
     ) {
-
-        Row(modifier = Modifier.wrapContentSize()) {
-            KeysDataSource.emailSuggestions.forEach {
-                SuggestionButton(
+        LazyRow(
+            modifier = Modifier.wrapContentSize(),
+        ) {
+            items(KeysDataSource.emailSuggestions) {
+                KeyboardButton(
+                    modifier = Modifier
+                        .wrapContentSize(unbounded = true, align = Alignment.TopStart)
+                        .height(40.dp),
                     key = it,
-                    textFieldState = textFieldState
+                    requestFocus = false,
+                    isUppercaseEnable = false,
+                    isToggle = false,
+                    wrapContent = true,
+                    scaleAnimationEnabled = false,
+                    contentPadding = PaddingValues(4.dp)
                 ) {
-                    if (it.isUppercase()) {
-                        isUppercase.toggle()
-                    } else if (it.isAction()) {
-                        onAction?.invoke(it)
-                    } else if (it.isSpecialCharacters()) {
-                        isSpecialCharacters.toggle()
-                        isNumeric.value = false
-                    } else if (it.isNumeric() || it.isAbc()) {
-                        isNumeric.toggle()
-                        isSpecialCharacters.value = false
-                    } else {
-                        onKeyPress(it)
-                        processKeys(it, textFieldState, isUppercase.value)
-                    }
+                    onKeyPress(it)
+                    processKeys(it, textFieldState, false)
                 }
             }
         }
@@ -83,7 +83,6 @@ fun KeyboardView(
                     GridItemSpan(keys[index].span)
                 }) { index ->
                 KeyboardButton(
-                    modifier = Modifier,
                     key = keys[index],
                     requestFocus = focusKey.value && index == 0,
                     isUppercaseEnable = isUppercase.value,
