@@ -1,4 +1,4 @@
-package com.techlads.composetvkeyboard.domain.model
+package com.techlads.composetvkeyboard.data
 
 object KeysConstants {
     const val UPPER_CASE_KEY = "upper_case_utility_key"

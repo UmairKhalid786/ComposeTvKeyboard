@@ -67,9 +67,7 @@ class MainActivity : ComponentActivity() {
                                 onAction = {
 
                                 }
-                            ) {
-
-                            }
+                            ) {}
                         }
                     }
                 }
