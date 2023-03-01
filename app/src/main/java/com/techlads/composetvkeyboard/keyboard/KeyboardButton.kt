@@ -37,15 +37,12 @@ fun KeyboardButton(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
-    val isToggleEnable = remember { mutableStateOf(isToggle) }
+    val isToggleEnable = remember { mutableStateOf(if (isUppercaseEnable && isToggle) true else isToggle) }
     val selected = remember { mutableStateOf(isFocused) }
     val coroutineScope = rememberCoroutineScope()
     val focusRequester = remember { FocusRequester() }
     val conditionalModifier = remember {
-        if (wrapContent)
-            modifier
-        else
-            modifier.aspectRatio((key.span.toFloat() / 1F))
+        if (wrapContent) modifier else modifier.aspectRatio((key.span.toFloat() / 1F))
     }
     val scale = animateFloatAsState(
         targetValue = if ((selected.value || isFocused) && scaleAnimationEnabled) 1.2f else 1f,
