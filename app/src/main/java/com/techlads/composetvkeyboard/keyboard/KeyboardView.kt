@@ -20,7 +20,7 @@ fun KeyboardView(
     modifier: Modifier = Modifier,
     textFieldState: MutableState<TextFieldValue>?,
     focusFirstKey: Boolean = false,
-    enableEmailSuggestions: Boolean = false,
+    enableEmailSuggestions: Boolean = true,
     onAction: ((key: Key) -> Unit)? = null,
     onKeyPress: (key: Key) -> Unit
 ) {
