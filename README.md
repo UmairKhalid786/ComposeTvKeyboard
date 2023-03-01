@@ -37,4 +37,5 @@ Basic TV custom keyboard written in jetpack compose
 
 ## Email Suggestions
 
-![Screenshot_1676328680](https://user-images.githubusercontent.com/21205138/218593010-7db79c4b-7206-4849-a504-ed9480c5e1df.png)
+![suggestions](https://user-images.githubusercontent.com/21205138/222294045-08ab6242-f202-4f91-995d-99477aa73471.png)
+
