@@ -2,7 +2,6 @@
 
 Basic TV custom keyboard written in jetpack compose 
 
-
 ## Upcoming features
 
 - Compact version 🔜
