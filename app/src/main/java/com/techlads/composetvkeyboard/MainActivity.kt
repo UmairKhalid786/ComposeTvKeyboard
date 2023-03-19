@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
             App()
         }
     }
-
+  
     @Composable
     fun App() {
         Material3Theme {
