@@ -19,7 +19,7 @@ Basic TV custom keyboard written in jetpack compose
 - Email suggestions added ✅
 
 ## Uppercase
-
+ 
 ![Screenshot_1676328669](https://user-images.githubusercontent.com/21205138/218592831-bca4d390-5e48-44b0-9a35-87d16e11b74b.png)
 
 ## Lowercase
