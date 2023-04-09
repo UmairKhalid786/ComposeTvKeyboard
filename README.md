@@ -31,7 +31,7 @@ Basic TV custom keyboard written in jetpack compose
 ![Screenshot_1676328678](https://user-images.githubusercontent.com/21205138/218592952-3beb940c-5646-4dbd-9a68-533d68861ebc.png)
 
 ## Special Characters
- 
+
 ![Screenshot_1676328680](https://user-images.githubusercontent.com/21205138/218593010-7db79c4b-7206-4849-a504-ed9480c5e1df.png)
 
 ## Email Suggestions
