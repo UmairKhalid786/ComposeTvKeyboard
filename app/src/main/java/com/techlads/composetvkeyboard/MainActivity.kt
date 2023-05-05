@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) {
+                    
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
                             .background(
@@ -50,6 +51,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Text("Try this keyboard 😄")
                     }
+                    
                     Box(
                         contentAlignment = Alignment.Center, modifier = Modifier
                             .background(color = MaterialTheme.colorScheme.primaryContainer)
