@@ -1,4 +1,4 @@
-package com.techlads.composetvkeyboard.keyboard
+package com.techlads.composetvkeyboard.keyboard.widgets
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.focusable

@@ -13,6 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.domain.model.Key
 import com.techlads.composetvkeyboard.data.KeysDataSource
+import com.techlads.composetvkeyboard.keyboard.widgets.KeyboardButton
+import com.techlads.composetvkeyboard.theme.Material3Theme
 import com.techlads.composetvkeyboard.utilities.*
 
 @Composable
@@ -84,6 +86,8 @@ fun KeyboardView(
                 }
             }
         }
+
+
     }
 }
 
@@ -100,5 +104,7 @@ fun processKeys(it: Key, state: MutableState<TextFieldValue>?, isUppercase: Bool
 @Preview
 @Composable
 fun KeyboardViewPreview() {
-    KeyboardView(textFieldState = null) {}
+    Material3Theme(darkTheme = true) {
+        KeyboardView(textFieldState = null) {}
+    }
 }
