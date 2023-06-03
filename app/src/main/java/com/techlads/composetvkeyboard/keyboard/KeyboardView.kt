@@ -7,12 +7,14 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.techlads.composetvkeyboard.domain.model.Key
 import com.techlads.composetvkeyboard.data.KeysDataSource
+import com.techlads.composetvkeyboard.keyboard.widgets.AudioButton
 import com.techlads.composetvkeyboard.keyboard.widgets.KeyboardButton
 import com.techlads.composetvkeyboard.theme.Material3Theme
 import com.techlads.composetvkeyboard.utilities.*
@@ -23,6 +25,7 @@ fun KeyboardView(
     textFieldState: MutableState<TextFieldValue>?,
     focusFirstKey: Boolean = false,
     enableEmailSuggestions: Boolean = true,
+    enableAudioRecognizer: Boolean = true,
     onAction: ((key: Key) -> Unit)? = null,
     onKeyPress: (key: Key) -> Unit
 ) {
@@ -87,7 +90,17 @@ fun KeyboardView(
             }
         }
 
-
+        if (enableAudioRecognizer)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                AudioButton {
+                    textFieldState?.value = TextFieldValue(it)
+                }
+            }
     }
 }
 
