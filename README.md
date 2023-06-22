@@ -32,4 +32,3 @@ Basic TV custom keyboard written in jetpack compose
 
 ## Email Suggestions
 ![suggestions](https://user-images.githubusercontent.com/21205138/222294045-08ab6242-f202-4f91-995d-99477aa73471.png)
-
