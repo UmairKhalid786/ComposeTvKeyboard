@@ -10,7 +10,7 @@ buildscript {
         classpath(libs.android.gradlePlugin)
     }
 }
-
+ 
 allprojects {
     repositories {
         google()
