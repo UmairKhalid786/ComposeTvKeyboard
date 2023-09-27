@@ -13,7 +13,7 @@ Basic TV custom keyboard written in jetpack compose
 ## Supported features
 - Android TV OS-inspired keyboard ✅
 - One keyboard contains support for Numeric, Alphabets and Special Characters ✅
-- Uppercase/Lowercase alphabets support added ✅
+- Uppercase/Lowercase alphabet support added ✅
 - Search IME action support added ✅
 - Keys animation ✅
 - Email suggestions added ✅
