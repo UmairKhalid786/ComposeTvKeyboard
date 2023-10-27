@@ -1,4 +1,4 @@
 <resources>
 
-    <style name="Theme.ComposeTvKeyboard" parent="@style/Theme.Leanback" />
+    <style name="Theme.ComposeTvKeyboard" parent="android:Theme.Material.NoActionBar" />
 </resources>
