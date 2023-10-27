@@ -1,4 +1,3 @@
-enableFeaturePreview("VERSION_CATALOGS")
 pluginManagement {
     repositories {
         google()

@@ -30,7 +30,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 
     kotlinOptions {
@@ -40,7 +40,6 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.leanback)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.android.material)
     implementation(libs.androidx.constraintlayout.compose)
@@ -55,6 +54,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.qrcode)
-    implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
 }
