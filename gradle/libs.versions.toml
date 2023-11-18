@@ -43,4 +43,4 @@ google-android-material = { module = "com.google.android.material:material", ver
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 androidx-tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "tv-foundation" }
 androidx-tv-material = { module = "androidx.tv:tv-material", version.ref = "tv-foundation" }
-qrcode = { module = "com.github.alexzhirkevich:custom-qr-generator", version.ref = "qr_code" }
+qrcode = { module = "com.github.alexzhirkevich:custom-qr-generator", version.ref = "qr_code" } 
