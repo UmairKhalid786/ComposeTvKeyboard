@@ -5,7 +5,6 @@ Basic TV custom keyboard written in jetpack compose
 ## Upcoming features
 
 - Compact version 🔜
-- Only Alphabets 🔜
 - IME actions support 🔜
 - External keyboard mapping 🔜
 
