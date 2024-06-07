@@ -111,9 +111,9 @@ object KeysDataSource {
         // Row five
         add(ABC)
         add(Clear)
-        add(Underscore)
+        add(Dot)
         add(Space)
-        add(Dash)
+        add(Comma)
         add(ActionArrow)
     }
 
