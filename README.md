@@ -7,7 +7,7 @@ Basic TV custom keyboard written in jetpack compose
 - Compact version 🔜
 - IME actions support 🔜
 - External keyboard mapping 🔜
-
+ 
 ## Supported features
 - Android TV OS-inspired keyboard ✅
 - One keyboard contains support for Numeric, Alphabets and Special Characters ✅
