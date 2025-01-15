@@ -2,11 +2,6 @@
 
 Basic TV custom keyboard written in jetpack compose 
 
-## Upcoming features
-
-- Compact version 🔜
-- IME actions support 🔜
-- External keyboard mapping 🔜
  
 ## Supported features
 - Android TV OS-inspired keyboard ✅
